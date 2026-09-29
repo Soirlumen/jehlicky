@@ -19,9 +19,21 @@ class deska:
             return -1
         return self.mezilinkovy_prostor*(n+1)
     
+    #vraci na jaké y pozici je nejbližší linka k zadanému y souřadnici
     def nejblizsi_linka(self,y):
-        nejblizsi=np.max(1,np.min(np.round(y/self.mezilinkovy_prostor)))
+        if(y<0 or y>self.delkay):
+            return -1
+        nejblizsi=np.round(y/self.mezilinkovy_prostor)*self.mezilinkovy_prostor
         return nejblizsi
     
     def uvnitr_desky(self,x,y)->bool:
-        return True if (0<x<self.delkax & 0<y<self.delkay) else False
+        return True if (0<x<self.delkax and 0<y<self.delkay) else False
+    
+    def protina_linku(self,jehla)->bool:
+        nejblizsi_linka=self.nejblizsi_linka(jehla.stredy)
+        if(jehla.projekce_min<= nejblizsi_linka <= jehla.projekce_max):
+            jehla.protla=True
+            return True
+        else:
+            jehla.protla=False
+            return False
