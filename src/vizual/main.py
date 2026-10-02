@@ -3,7 +3,7 @@ import const
 import colors
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout,QWidget, QSpinBox, QLabel, QSlider, QGraphicsView, QGraphicsScene, QFormLayout
 from PySide6.QtCore import Qt, QTimer, QRectF
-from PySide6.QtGui import QPen, QColor, QBrush, QPainter
+from PySide6.QtGui import QPen, QBrush, QPainter
 from jehla.simulace2 import simulace
 SIRKA_DESKY = getattr(const, "SIRKA_DESKY", 600)
 
@@ -135,7 +135,7 @@ class Form(QMainWindow):
      def vykresli_jehlu(self, j):
           barva = colors.beige if j.protla else colors.raspberry
           pen = QPen(barva, 2)
-          pen.setCosmetic(True)   # tloušťka se nemění se zoomem
+          pen.setCosmetic(True)   #tloušťka se nemění se zoomem
           self.scene.addLine(j.x1, j.y1, j.x2, j.y2, pen)
 
      @staticmethod
