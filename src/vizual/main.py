@@ -1,5 +1,6 @@
 import sys
 import const
+import colors
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout,QWidget, QSpinBox, QLabel, QSlider, QGraphicsView, QGraphicsScene, QFormLayout
 from PySide6.QtCore import Qt, QTimer, QRectF
 from PySide6.QtGui import QPen, QColor, QBrush, QPainter
@@ -121,8 +122,8 @@ class Form(QMainWindow):
      def vykresli_desku(self):
           d=self.sim.deska
           self.scene.clear()
-          self.scene.addRect(QRectF(0,0,d.delkax,d.delkay),QPen(Qt.magenta),QBrush(QColor(60, 229, 38)))
-          pen_linka = QPen(QColor(60, 60, 60), 1.5)
+          self.scene.addRect(QRectF(0,0,d.delkax,d.delkay),QPen(colors.thistle),QBrush(colors.shadow_grey))
+          pen_linka = QPen(colors.muted_teal, 1.5)
           pen_linka.setCosmetic(True)
           for n in range(d.pocet_linek):
                y = d.n_ta_linka(n)
@@ -132,7 +133,7 @@ class Form(QMainWindow):
           self.view.fitInView(self.scene.sceneRect(), Qt.KeepAspectRatio)
 
      def vykresli_jehlu(self, j):
-          barva = QColor(10, 30, 187) if j.protla else QColor(80, 0, 120)
+          barva = colors.beige if j.protla else colors.raspberry
           pen = QPen(barva, 2)
           pen.setCosmetic(True)   # tloušťka se nemění se zoomem
           self.scene.addLine(j.x1, j.y1, j.x2, j.y2, pen)
